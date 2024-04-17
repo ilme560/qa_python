@@ -52,13 +52,13 @@ class TestBooksCollector:
         collector.set_book_genre('Что делать, если ваш кот хочет вас убить', 'Комедии')
         assert collector.get_books_for_children() == ['Падение Гипериона', 'Что делать, если ваш кот хочет вас убить']
 
-    def test_adding_a_book_to_favorites(self, books, collector):
-        collector.add_new_book(books)
-        collector.add_book_in_favorites(books)
-        assert books in collector.get_list_of_favorites_books()
+    def test_adding_a_book_to_favorites(self, collector):
+        collector.add_new_book('Война и мир')
+        collector.add_book_in_favorites('Война и мир')
+        assert 'Война и мир' in collector.get_list_of_favorites_books()
 
-    def test_deleting_a_book_from_favorites(self, books, collector):
-        collector.add_new_book(books)
-        collector.add_book_in_favorites(books)
-        collector.delete_book_from_favorites(books)
-        assert books not in collector.get_list_of_favorites_books()
+    def test_deleting_a_book_from_favorites(self, collector):
+        collector.add_new_book('Война и мир')
+        collector.add_book_in_favorites('Война и мир')
+        collector.delete_book_from_favorites('Война и мир')
+        assert 'Война и мир' not in collector.get_list_of_favorites_books()
